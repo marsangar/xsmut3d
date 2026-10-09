@@ -20,6 +20,9 @@ assembly, cosmic, census_path)` call signature.
      └──────────────────────────────────────────┘
 ```
 
+![Illustrative example of xsmut3d output](images/KEAP1_3D.png)
+
+
 ---
 
 ## What it gives you
