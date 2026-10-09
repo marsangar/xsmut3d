@@ -77,7 +77,7 @@ domain_table <- function(accession, human_accession = NULL, map = NULL,
   d <- as.character(description)
   d[is.na(d) | !nzchar(d)] <- as.character(class)[is.na(d) | !nzchar(d)]
   d <- sub("\\s*\\(IPR\\d+\\)$", "", d)
-  d <- sub("^(.{26}).{3,}$", "\\1\u2026", d)
+  d <- sub("^(.{26}).{3,}$", "\\1...", d)   # ASCII: the pdf() device cannot draw U+2026
   d
 }
 

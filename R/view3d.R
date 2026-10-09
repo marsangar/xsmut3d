@@ -21,6 +21,17 @@ NULL
                  maxColorValue = 255)
 }
 
+.pdb_for_view <- function(structure) {
+  f <- structure$file %||% structure$model$file
+  if (!is.null(f) && grepl("\\.pdb$", f, ignore.case = TRUE) && file.exists(f)) return(f)
+  m <- structure$model
+  if (!is.null(m) && !is.null(m$pdb_url)) {
+    dest <- file.path(m$cache_dir %||% xsmut3d_cache_dir(), "models", basename(m$pdb_url))
+    return(.download_cached(m$pdb_url, dest))
+  }
+  stop("No PDB coordinates available for rendering; use af_model(format = 'pdb') or pass a .pdb path to read_structure().")
+}
+
 #' Interactive 3D view of mutations on a structure
 #'
 #' @param structure a `protein_structure` from [read_structure()]
@@ -43,13 +54,13 @@ view_structure_3d <- function(structure, residue_counts = NULL, domains = NULL,
                               width = NULL, height = NULL) {
   colour_by <- match.arg(colour_by)
   res <- structure$residues
-  path <- structure$file %||% structure$model$file
-  if (is.null(path) || !file.exists(path))
-    stop("The structure object has no coordinate file to render; rebuild it with read_structure().")
-  fmt  <- if (grepl("\\.cif(\\.gz)?$", path, ignore.case = TRUE)) "cif" else "pdb"
+  # 3Dmol.js only assigns secondary structure (needed for cartoons) when it
+  # parses PDB, not mmCIF, so always render from the PDB file.
+  path <- .pdb_for_view(structure)
+  pdb_lines <- readLines(path, warn = FALSE)
 
   v <- r3dmol::r3dmol(width = width, height = height)
-  v <- r3dmol::m_add_model(v, data = path, format = fmt)
+  v <- r3dmol::m_add_model(v, data = paste(pdb_lines, collapse = "\n"), format = "pdb")
   v <- r3dmol::m_set_style(v, style = r3dmol::m_style_cartoon(color = "#D9D9D9", arrows = TRUE))
 
   # --- base colouring -------------------------------------------------------

@@ -117,7 +117,9 @@ map_mutations_to_structure <- function(mutations, gene, model, species = NULL,
   mt <- as.data.table(mutations)
   if (xsmut::is_dndscv(mt)) mt <- xsmut::as_xsmut(mt)
   if (!"gene" %in% names(mt)) stop("`mutations` needs a `gene` column")
-  mt <- mt[toupper(gene) == toupper(mt$gene)]
+  # data.table resolves `gene` to the column inside [], so compare via a local
+  g <- toupper(gene)
+  mt <- mt[toupper(mt$gene) == g]
   if (!nrow(mt)) {
     warning("No rows for gene ", gene, " in the mutation table")
   }

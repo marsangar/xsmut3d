@@ -142,7 +142,9 @@ xsmut3d_pipeline <- function(gene, mutations, species = NULL, assembly = NULL,
   # ---- 5. COSMIC ----------------------------------------------------------
   cos_res <- NULL; gene_check <- NULL
   if (!is.null(cosmic)) {
-    cos_tab <- if (is.character(cosmic)) xsmut::cosmic_load(cosmic, genes = gene) else cosmic
+    # xsmut streams the file through gzip, which does not expand "~"
+    cos_tab <- if (is.character(cosmic)) xsmut::cosmic_load(path.expand(cosmic), genes = gene) else cosmic
+    if (!is.null(census_path)) census_path <- path.expand(census_path)
     cos_mut <- xsmut::cosmic_gene_mutations(gene, cos_tab)
     gene_check <- xsmut::cosmic_gene_listed(gene, census_path = census_path, mutations = cos_tab)
     cos_res <- cosmic_on_structure(cos_mut, model, human_accession = target$human_accession)
