@@ -90,7 +90,8 @@ parse_aa_sub <- function(x) {
 # ---------------------------------------------------------------------------
 
 .align_proteins <- function(seq_a, seq_b) {
-  pa <- if (requireNamespace("pwalign", quietly = TRUE)) pwalign else Biostrings
+  # pwalign (Bioc >= 3.19) or the older Biostrings home of pairwiseAlignment
+  pa <- if (requireNamespace("pwalign", quietly = TRUE)) asNamespace("pwalign") else asNamespace("Biostrings")
   aln <- pa$pairwiseAlignment(
     Biostrings::AAString(gsub("[^A-Z]", "", toupper(seq_b))),
     Biostrings::AAString(gsub("[^A-Z]", "", toupper(seq_a))),
