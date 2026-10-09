@@ -1,0 +1,49 @@
+Package: xsmut3d
+Title: Somatic Mutations on Predicted Protein Structures Across Species
+Version: 0.1.0
+Authors@R: person("Martin", "S.", email = "ms84@sanger.ac.uk", role = c("aut", "cre"))
+Description: Projects somatic mutation calls (typically dNdScv 'annotmuts'
+    output) for one or more genes onto a three-dimensional protein structure
+    retrieved from the AlphaFold Protein Structure Database. Works for any
+    Ensembl species: the species protein is aligned to its human ortholog so
+    that UniProt functional annotation, COSMIC hotspots and AlphaMissense
+    pathogenicity can be transferred across the alignment and reported on the
+    structure. Every residue carries its AlphaFold pLDDT confidence and, where
+    available, PAE-derived domain confidence, so low-confidence (frequently
+    disordered) regions are flagged rather than over-interpreted. Produces an
+    interactive 'r3dmol' view, a static two-dimensional domain / lollipop /
+    confidence figure, a 3D mutation-clustering test and a tabular report.
+    Shares its Ensembl, dNdScv and COSMIC layer with the 'xsmut' package.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends: R (>= 4.1)
+Imports:
+    xsmut,
+    httr2,
+    jsonlite,
+    data.table,
+    ggplot2,
+    patchwork,
+    memoise,
+    grDevices,
+    stats,
+    tools,
+    utils,
+    Biostrings,
+    pwalign,
+    r3dmol,
+    htmlwidgets
+Suggests:
+    testthat (>= 3.0.0),
+    webshot2,
+    shiny,
+    DT,
+    knitr,
+    rmarkdown
+Remotes: github::your-org/xsmut
+biocViews: Software
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0
+URL: https://github.com/your-org/xsmut3d
+BugReports: https://github.com/your-org/xsmut3d/issues
