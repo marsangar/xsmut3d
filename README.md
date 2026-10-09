@@ -36,6 +36,7 @@ assembly, cosmic, census_path)` call signature.
 | `res$hotspots` | Per-residue 3D neighbourhood burden scan with BH-corrected FDR |
 | `res$confidence` | Plain-language statement of which parts of the model you may interpret and which you may not |
 
+![](images/CUL3_structure_tracks.png)
 ---
 
 ## Install
