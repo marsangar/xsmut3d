@@ -8,11 +8,9 @@ residue with its functional role and its **modelling confidence**, and reports t
 mutations that hit or surround key functional sites.
 
 ## Display of somatic variants on the folded protein
-![](images/KEAP1_3D.png)
-![](images/KEAP1_3D.html)
+![](images/CUL3_3D.png)
 
-
-It is the structural sibling of [`xsmut`](../xsmut), reuses that package's Ensembl /
+`xsmut3d` is the structural sibling of [`xsmut`](../xsmut), reuses that package's Ensembl /
 dNdScv / COSMIC layer, and keeps the same `*_pipeline(gene, mutations, species,
 assembly, cosmic, census_path)` call signature.
 
