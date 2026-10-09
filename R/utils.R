@@ -81,7 +81,8 @@ parse_aa_sub <- function(x) {
   m <- regmatches(s, regexec("^([A-Z])(\\d+)([A-Z*=])$", s))
   ref <- vapply(m, function(z) if (length(z)) z[2] else NA_character_, "")
   alt <- vapply(m, function(z) if (length(z)) z[4] else NA_character_, "")
-  alt[alt == "="] <- ref[alt == "="]
+  syn <- !is.na(alt) & alt == "="
+  alt[syn] <- ref[syn]
   data.table(ref = ref, pos = xsmut::parse_aa_pos(x), alt = alt)
 }
 
