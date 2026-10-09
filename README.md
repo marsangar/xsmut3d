@@ -7,8 +7,11 @@ actually acts: on the **folded protein**. It fetches the structure from the
 residue with its functional role and its **modelling confidence**, and reports the
 mutations that hit or surround key functional sites.
 
-## Display of somatic variants on the folded protein
+## Illustrative 3D display
 ![](images/CUL3_3D.png)
+CUL3 folded protein             |  KEAP1 folded protein 
+:-------------------------:|:-------------------------:
+![](images/CUL3_3D.png)  |  ![](images/KEAP1_3D.png)
 
 `xsmut3d` is the structural sibling of [`xsmut`](../xsmut), reuses that package's Ensembl /
 dNdScv / COSMIC layer, and keeps the same `*_pipeline(gene, mutations, species,
