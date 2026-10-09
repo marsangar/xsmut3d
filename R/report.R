@@ -68,7 +68,7 @@ xsmut3d_report <- function(res, file, top = 25L) {
 <h2>Structure</h2>
 <iframe src="%s" title="interactive structure"></iframe>
 <p class="meta">Spheres: mutated residues, sized by recurrence. Green sticks: annotated key functional sites.
-Thin translucent trace: pLDDT &lt; 70, where the coordinates should not be interpreted.</p>
+In plddt colouring, yellow/orange cartoon = pLDDT &lt; 70, where the coordinates should not be interpreted.</p>
 
 <h2>Model confidence</h2>
 <div class="caveat"><p>%s</p><p>%s</p></div>

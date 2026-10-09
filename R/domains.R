@@ -112,7 +112,11 @@ key_sites <- function(domains) {
   if (!nrow(d)) return(data.table(pos = integer(), class = character(),
                                   description = character(), source = character(),
                                   transferred = logical()))
-  out <- d[, .(pos = seq.int(start, end)), by = .(class, description, source, transferred)]
+  # one group per row: several sites often share a description (e.g. repeated
+  # "Substrate" binding residues), which would make start/end vectors
+  d[, .row := seq_len(.N)]
+  out <- d[, .(pos = seq.int(start, end), class = class, description = description,
+               source = source, transferred = transferred), by = .row]
   unique(out[, .(pos, class, description, source, transferred)])[order(pos)]
 }
 

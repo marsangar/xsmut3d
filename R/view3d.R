@@ -9,8 +9,8 @@ NULL
 #   "burden" - where are my mutations?                          (grey -> red ramp)
 #
 # Mutated residues are always drawn as spheres scaled by recurrence, key
-# functional sites as sticks, and low-confidence stretches as a thin translucent
-# tube so they cannot be mistaken for structure.
+# functional sites as sticks, and low-confidence stretches in the AlphaFold
+# yellow/orange (plddt mode) or a pale wash (other modes).
 
 .domain_palette <- c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
                      "#937860", "#DA8BC3", "#8C8C8C", "#CCB974", "#64B5CD")
@@ -42,8 +42,8 @@ NULL
 #' @param colour_by `"plddt"`, `"domain"` or `"burden"`
 #' @param show_sites draw annotated key functional sites as sticks
 #' @param label_top label the N most recurrently mutated residues
-#' @param low_confidence_plddt residues below this pLDDT are drawn as a thin
-#'   translucent tube
+#' @param low_confidence_plddt residues below this pLDDT are drawn in a pale
+#'   colour in domain/burden modes (plddt mode already uses the AlphaFold bands)
 #' @param width,height widget size
 #' @return an `r3dmol` htmlwidget
 #' @export
@@ -81,13 +81,15 @@ view_structure_3d <- function(structure, residue_counts = NULL, domains = NULL,
     }
   }
 
-  # --- low-confidence regions drawn thin and translucent --------------------
+  # --- low-confidence regions -----------------------------------------------
+  # 3Dmol applies cartoon opacity and cartoon style per *chain*; mixing a
+  # translucent trace into an opaque chain breaks the whole cartoon. So low
+  # confidence is shown by colour only: a pale wash in domain/burden mode (in
+  # plddt mode the AlphaFold yellow/orange bands already carry it).
   lowp <- res$pos[!is.na(res$plddt) & res$plddt < low_confidence_plddt]
-  if (length(lowp)) {
+  if (length(lowp) && colour_by != "plddt") {
     v <- r3dmol::m_add_style(v, sel = r3dmol::m_sel(resi = lowp),
-                             style = r3dmol::m_style_cartoon(
-                               color = if (colour_by == "plddt") "#FF7D45" else "#BDBDBD",
-                               style = "trace", thickness = 0.15, opacity = 0.55))
+                             style = r3dmol::m_style_cartoon(color = "#EFEFEF", arrows = TRUE))
   }
 
   # --- key functional sites -------------------------------------------------

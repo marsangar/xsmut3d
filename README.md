@@ -26,7 +26,7 @@ assembly, cosmic, census_path)` call signature.
 
 | Output | What it answers |
 |---|---|
-| `res$view` | Rotatable 3D structure; mutations as spheres sized by recurrence, key sites as green sticks, low-confidence regions as a thin translucent trace |
+| `res$view` | Rotatable 3D structure; mutations as spheres sized by recurrence, key sites as green sticks, low-confidence regions in the AlphaFold yellow/orange bands |
 | `res$plot` | Static multi-track figure: mutation lollipops · human COSMIC · domain architecture · 3D hotspot scan · pLDDT profile — all on one residue axis |
 | `res$report` | Every call, ranked, with its domain, nearest functional site **in 3D**, pLDDT band, COSMIC burden at the aligned human residue and AlphaMissense score |
 | `res$cluster` | Permutation test: are the mutated residues closer together in 3D than chance? (the thing a lollipop plot cannot tell you) |
@@ -206,8 +206,11 @@ the pLDDT threshold from *both* the observed set and the null, and report how ma
 excluded. Including disordered tails inflates both tests.
 
 **In the figure and the view.** The pLDDT profile is a panel of the static figure,
-shaded by band. In the 3D view, anything below pLDDT 70 is drawn as a thin translucent
-trace so it cannot be mistaken for structure, and `colour_by = "plddt"` is the default.
+shaded by band. In the 3D view, `colour_by = "plddt"` (the default) paints the cartoon
+in the AlphaFold bands, so anything below 70 is unmistakably yellow/orange; in the other
+colourings those residues get a pale wash.
+
+
 
 ```r
 res$confidence$text                       # the one-paragraph summary
