@@ -1,15 +1,13 @@
 # xsmut3d — somatic mutations on predicted protein structures, across species
 
 `xsmut3d` takes somatic mutation calls for a gene — typically the `annotmuts` table
-from [dNdScv](https://github.com/im3sanger/dndscv) — and puts them where selection
-actually acts: on the **folded protein**. It fetches the structure from the
+from [dNdScv](https://github.com/im3sanger/dndscv) — and displays them on the **folded protein**. It fetches the structure from the
 [AlphaFold Protein Structure Database](https://alphafold.ebi.ac.uk), annotates every
 residue with its functional role and its **modelling confidence**, and reports the
 mutations that hit or surround key functional sites.
 
-## Illustrative 3D display
-![](images/CUL3_3D.png)
-CUL3 folded protein             |  KEAP1 folded protein 
+## Illustrative 3D display of somatic variants
+CUL3 folded protein         |  KEAP1 folded protein 
 :-------------------------:|:-------------------------:
 ![](images/CUL3_3D.png)  |  ![](images/KEAP1_3D.png)
 
@@ -20,7 +18,7 @@ assembly, cosmic, census_path)` call signature.
 ```
             dNdScv annotmuts (any Ensembl species)
                           │
-     ┌────────────────────┴────────────────────┐
+     ┌────────────────────┴─────────────────────┐
      │  xsmut   : onto the human gene model     │  (1D, genomic)
      │  xsmut3d : onto the AlphaFold structure  │  (3D, protein)
      └──────────────────────────────────────────┘
