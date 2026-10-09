@@ -6,7 +6,7 @@ NULL
 # Tiny HTTP helper (same manners as xsmut: retry, polite UA, session memoise)
 # ---------------------------------------------------------------------------
 
-.ua <- "xsmut3d (https://github.com/your-org/xsmut3d)"
+.ua <- "xsmut3d (https://github.com/marsangar/xsmut3d)"
 
 .http_json_raw <- function(url, query = list(), accept = "application/json") {
   req <- httr2::request(url)

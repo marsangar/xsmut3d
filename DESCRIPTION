@@ -41,9 +41,9 @@ Suggests:
     DT,
     knitr,
     rmarkdown
-Remotes: github::your-org/xsmut
+Remotes: github::marsangar/xsmut
 biocViews: Software
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.1.0
-URL: https://github.com/your-org/xsmut3d
-BugReports: https://github.com/your-org/xsmut3d/issues
+URL: https://github.com/marsangar/xsmut3d
+BugReports: https://github.com/marsangar/xsmut3d/issues

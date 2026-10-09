@@ -47,8 +47,8 @@ install.packages(c("httr2", "jsonlite", "data.table", "ggplot2", "patchwork",
                    "memoise", "r3dmol", "htmlwidgets"))
 
 # the companion package, then this one
-remotes::install_github("your-org/xsmut")
-remotes::install_github("your-org/xsmut3d")
+remotes::install_github("marsangar/xsmut")
+remotes::install_github("marsangar/xsmut3d")
 
 # optional: static PNG snapshots of the 3D view
 install.packages("webshot2")
