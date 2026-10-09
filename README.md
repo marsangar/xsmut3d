@@ -7,6 +7,11 @@ actually acts: on the **folded protein**. It fetches the structure from the
 residue with its functional role and its **modelling confidence**, and reports the
 mutations that hit or surround key functional sites.
 
+## Display of somatic variants on the folded protein
+![](images/KEAP1_3D.png)
+![](images/KEAP1_3D.html)
+
+
 It is the structural sibling of [`xsmut`](../xsmut), reuses that package's Ensembl /
 dNdScv / COSMIC layer, and keeps the same `*_pipeline(gene, mutations, species,
 assembly, cosmic, census_path)` call signature.
@@ -19,10 +24,6 @@ assembly, cosmic, census_path)` call signature.
      │  xsmut3d : onto the AlphaFold structure  │  (3D, protein)
      └──────────────────────────────────────────┘
 ```
-
-![Illustrative example of xsmut3d output](images/KEAP1_3D.png)
-
-
 ---
 
 ## What it gives you
